@@ -33,7 +33,7 @@ export const formSchema = z
   })
   .and(passwordMatchSchema);
 
-export default function Register() {
+export default function RegisterPage() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
