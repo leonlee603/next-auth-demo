@@ -127,7 +127,7 @@ export default function RegisterPage() {
                     )}
                   />
                   <Button type="submit">
-                    {form.formState.isSubmitting ? "Submitting..." : "Register"}
+                    {form.formState.isSubmitting ? "Loading..." : "Register"}
                   </Button>
                 </fieldset>
               </form>
