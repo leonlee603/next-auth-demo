@@ -27,7 +27,7 @@ import { Input } from "@/components/ui/input";
 import { passwordMatchSchema } from "@/validation/passwordMatchSchema";
 import { registerUser } from "./actions";
 
-export const formSchema = z
+const formSchema = z
   .object({
     email: z.string().email(),
   })
