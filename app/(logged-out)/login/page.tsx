@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -25,7 +26,7 @@ import {
 import { Input } from "@/components/ui/input";
 
 import { passwordSchema } from "@/validation/passwordSchema";
-import { loginWithCredentials } from "./action";
+import { loginWithCredentials } from "./actions";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -33,6 +34,8 @@ const formSchema = z.object({
 });
 
 export default function LoginPage() {
+  const router = useRouter();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -52,6 +55,7 @@ export default function LoginPage() {
         message: response.message,
       });
     } else {
+      router.push("/my-account");
     }
   };
 
