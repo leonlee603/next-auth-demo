@@ -2,6 +2,7 @@
 
 import { z } from "zod";
 import { passwordSchema } from "@/validation/passwordSchema";
+import { signIn } from "@/auth";
 
 export const loginWithCredentials = async ({
   email,
@@ -25,6 +26,21 @@ export const loginWithCredentials = async ({
       error: true,
       message:
         loginValidation.error?.issues[0]?.message ?? "An error occurred.",
+    };
+  }
+
+  try {
+    await signIn("credentials", {
+      email,
+      password,
+      redirect: false,
+    });
+  } catch (e) {
+    console.log(e);
+
+    return {
+      error: true,
+      message: "Incorrect email or password",
     };
   }
 };
