@@ -118,7 +118,15 @@ export default function LoginPage() {
               Register
             </Link>
           </div>
-          <div className="text-muted-foreground text-sm">Forgot password? </div>
+          <div className="text-muted-foreground text-sm">
+            Forgot password?{" "}
+            <Link
+              href="/password-reset"
+              className="underline"
+            >
+              Reset my password
+            </Link>
+          </div>
         </CardFooter>
       </Card>
     </main>
