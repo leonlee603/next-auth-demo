@@ -59,6 +59,8 @@ export default function LoginPage() {
     }
   };
 
+  const email = form.watch("email");
+
   return (
     <main className="flex justify-center items-center min-h-screen">
       <Card className="w-[350px]">
@@ -121,7 +123,9 @@ export default function LoginPage() {
           <div className="text-muted-foreground text-sm">
             Forgot password?{" "}
             <Link
-              href="/password-reset"
+              href={`/password-reset${
+                email ? `?email=${encodeURIComponent(email)}` : ""
+              }`}
               className="underline"
             >
               Reset my password
