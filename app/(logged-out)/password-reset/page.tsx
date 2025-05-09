@@ -25,6 +25,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
+import { passwordReset } from "./actions";
+
 const formSchema = z.object({
   email: z.string().email(),
 });
@@ -39,7 +41,7 @@ export default function PasswordReset() {
   });
 
   const handleSubmit = async (data: z.infer<typeof formSchema>) => {
-    console.log(data);
+    await passwordReset(data.email);
   };
 
   return (
@@ -50,8 +52,8 @@ export default function PasswordReset() {
             <CardTitle>Email Sent</CardTitle>
           </CardHeader>
           <CardContent>
-            If you have an account with us you will receive a password reset
-            email at {form.getValues("email")}
+            If you have an account with us, you will receive a password reset
+            email at {form.getValues("email")}.
           </CardContent>
         </Card>
       ) : (
