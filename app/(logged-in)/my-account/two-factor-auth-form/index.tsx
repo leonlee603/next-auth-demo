@@ -17,6 +17,7 @@ export default function TwoFactorAuthForm({ twoFactorActivated }: Props) {
 
   const handleOTPSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsActivated(true);
   };
 
   return (
