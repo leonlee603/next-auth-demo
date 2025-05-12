@@ -104,7 +104,7 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="flex justify-center items-center min-h-screen">
+    <main className="flex justify-center items-center flex-1">
       {step === 1 && (
         <Card className="w-[350px]">
           <CardHeader>
