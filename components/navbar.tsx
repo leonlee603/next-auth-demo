@@ -14,7 +14,7 @@ export default function Navbar({ isLoggedIn }: { isLoggedIn: boolean }) {
         <div>
           {isLoggedIn ? (
             <div className="flex flex-row gap-2">
-              <Button asChild size="sm" variant="secondary">
+              <Button asChild size="sm" variant="secondary" className="border-1">
                 <Link href="/my-account">My Account</Link>
               </Button>
               <LogoutButton />
