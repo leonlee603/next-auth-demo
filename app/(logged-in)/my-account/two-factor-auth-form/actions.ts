@@ -5,7 +5,6 @@ import { db } from "@/db/drizzle";
 import { users } from "@/db/usersSchema";
 import { eq } from "drizzle-orm";
 import { authenticator } from "otplib";
-// import speakeasy from "speakeasy";
 
 export const get2faSecret = async () => {
   const session = await auth();
