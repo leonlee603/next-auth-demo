@@ -1,7 +1,18 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { toast } from "sonner";
+import { QRCodeSVG } from "qrcode.react";
+
+import { Button } from "@/components/ui/button";
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSeparator,
+  InputOTPSlot,
+} from "@/components/ui/input-otp";
+
+import { activate2fa, disable2fa, get2faSecret } from "./actions";
 
 type Props = {
   twoFactorActivated: boolean;
@@ -10,18 +21,54 @@ type Props = {
 export default function TwoFactorAuthForm({ twoFactorActivated }: Props) {
   const [isActivated, setIsActivated] = useState(twoFactorActivated);
   const [step, setStep] = useState(1);
+  const [code, setCode] = useState("");
+  const [otp, setOtp] = useState("");
 
   const handleEnableClick = async () => {
+    const response = await get2faSecret();
+
+    if (response.error) {
+      toast.error(`${response.message}`);
+      return;
+    }
+
     setStep(2);
+    setCode(response.twoFactorSecret ?? "");
   };
 
   const handleOTPSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const response = await activate2fa(otp);
+
+    if (response?.error) {
+      toast.error(`${response.message}`);
+      return;
+    }
+
+    toast.success("Two-Factor Authentication has been enabled");
+
     setIsActivated(true);
+    setStep(1);
+    setOtp("");
+  };
+
+  const handleDisable2faClick = async () => {
+    await disable2fa();
+
+    toast.success("Two-Factor Authentication has been disabled");
+    
+    setIsActivated(false);
+    setStep(1);
+    setOtp("");
   };
 
   return (
     <div>
+      {!!isActivated && (
+        <Button variant="destructive" onClick={handleDisable2faClick}>
+          Disable Two-Factor Authentication
+        </Button>
+      )}
       {!isActivated && (
         <div>
           {step === 1 && (
@@ -35,7 +82,7 @@ export default function TwoFactorAuthForm({ twoFactorActivated }: Props) {
                 Scan the QR code below in the Google Authenticator app to
                 activate Two-Factor Authentication.
               </p>
-              {/* <QRCode value={code} /> */}
+              <QRCodeSVG value={code} className="my-2" />
               <Button onClick={() => setStep(3)} className="w-full my-2">
                 I have scanned the QR code
               </Button>
@@ -54,6 +101,25 @@ export default function TwoFactorAuthForm({ twoFactorActivated }: Props) {
                 Please enter the one-time passcode from the Google Authenticator
                 app.
               </p>
+              <InputOTP maxLength={6} value={otp} onChange={setOtp}>
+                <InputOTPGroup>
+                  <InputOTPSlot index={0} />
+                  <InputOTPSlot index={1} />
+                  <InputOTPSlot index={2} />
+                </InputOTPGroup>
+                <InputOTPSeparator />
+                <InputOTPGroup>
+                  <InputOTPSlot index={3} />
+                  <InputOTPSlot index={4} />
+                  <InputOTPSlot index={5} />
+                </InputOTPGroup>
+              </InputOTP>
+              <Button disabled={otp.length !== 6} type="submit">
+                Submit and activate
+              </Button>
+              <Button onClick={() => setStep(2)} variant="outline">
+                Cancel
+              </Button>
             </form>
           )}
         </div>
