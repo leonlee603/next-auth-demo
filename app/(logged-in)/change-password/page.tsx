@@ -3,7 +3,7 @@ import ChangePasswordForm from "./change-password-form";
 
 export default function ChangePasswordPage() {
   return (
-    <Card className="w-[350px]">
+    <Card>
       <CardHeader>
         <CardTitle>Change Password</CardTitle>
       </CardHeader>
