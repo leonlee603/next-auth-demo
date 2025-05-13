@@ -85,18 +85,18 @@ export default function Home() {
         </CardHeader>
         <CardContent>
           <p>- Non-user can create user account</p>
-          <Image src={img_1} alt="user change password" className="py-2"/>
+          <Image src={img_1} alt="user change password" className="py-2" placeholder="blur"/>
           <p>
             - Logged in user can change their password, enable / disable Google two factor
             authentication and reset password.
           </p>
-          <Image src={img_2} alt="user change password" className="py-2"/>
+          <Image src={img_2} alt="user change password" className="py-2" placeholder="blur"/>
           <Separator />
-          <Image src={img_3} alt="user enable 2FA" className="py-2"/>
+          <Image src={img_3} alt="user enable 2FA" className="py-2" placeholder="blur"/>
           <Separator />
-          <Image src={img_4} alt="user 2FA QR-code" className="py-2"/>
+          <Image src={img_4} alt="user 2FA QR-code" className="py-2" placeholder="blur"/>
           <Separator />
-          <Image src={img_5} alt="user 2FA OTP" className="py-2"/>
+          <Image src={img_5} alt="user 2FA OTP" className="py-2" placeholder="blur"/>
         </CardContent>
       </Card>
       <Card className="w-full max-w-[800px] mb-4 mx-auto">
