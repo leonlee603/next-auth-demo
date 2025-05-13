@@ -33,7 +33,7 @@ export default async function UpdatePasswordPage({
   }
 
   return (
-    <main className="flex justify-center items-center min-h-screen">
+    <main className="flex justify-center flex-1 py-4">
       <Card className="w-[350px]">
         <CardHeader>
           <CardTitle>

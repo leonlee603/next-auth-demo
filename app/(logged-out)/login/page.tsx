@@ -104,7 +104,7 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="flex justify-center items-center flex-1">
+    <main className="flex justify-center flex-1 py-4">
       {step === 1 && (
         <Card className="w-[350px]">
           <CardHeader>

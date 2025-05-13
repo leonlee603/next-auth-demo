@@ -12,5 +12,9 @@ export default async function LoggedOutLayout({
     redirect("/my-account");
   }
 
-  return children;
+  return (
+    <div className="w-full max-w-4xl block h-auto">
+      <div className="flex">{children}</div>
+    </div>
+  );
 }
