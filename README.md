@@ -1,4 +1,4 @@
-## Getting Started
+## Introduction
 
 Auth.js is one of the most commonly used authentication libraries in Next.js projects. Therefore, in this project, I have tried to integrate various tools to build a website login system.
 
